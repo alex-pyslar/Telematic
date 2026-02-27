@@ -1,9 +1,9 @@
 # Stage 1: Build frontend
 FROM node:22-alpine AS frontend-builder
 WORKDIR /frontend
-COPY webui/package.json webui/package-lock.json* ./
+COPY web-ui/package.json web-ui/package-lock.json* ./
 RUN npm ci --prefer-offline
-COPY webui/ ./
+COPY web-ui/ ./
 RUN npm run build
 
 # Stage 2: Build Go backend

@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # 1. Build frontend (outputs into api/cmd/server/frontend_dist)
 echo "==> Building frontend..."
-cd "$SCRIPT_DIR/webui"
+cd "$SCRIPT_DIR/web-ui"
 npm run build
 
 # 2. Run the Go backend (embeds the freshly built frontend)
