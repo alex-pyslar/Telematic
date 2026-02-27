@@ -13,7 +13,7 @@ COPY api/go.mod api/go.sum ./
 RUN go mod download
 COPY api/ ./
 # Embed the compiled frontend into the Go binary
-COPY --from=frontend-builder /frontend/dist ./cmd/server/frontend_dist
+COPY --from=frontend-builder /api/cmd/server/frontend_dist ./cmd/server/frontend_dist
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /botmanager ./cmd/server
 
 # Stage 3: Minimal runtime image
@@ -25,4 +25,4 @@ EXPOSE 8080
 STOPSIGNAL SIGTERM
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD wget -qO- http://localhost:8080/api/auth/me || exit 1
-CMD ["./botmanager"]
+CMD ["./bot-manager"]
