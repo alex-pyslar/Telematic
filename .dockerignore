@@ -1,0 +1,47 @@
+# ── Git ───────────────────────────────────────────────────────────────────────
+.git
+.gitignore
+
+# ── Node modules (installed fresh inside the builder stage) ──────────────────
+web-ui/node_modules
+
+# ── Frontend build output (rebuilt inside Docker) ────────────────────────────
+web-ui/dist
+web-ui/.vite
+
+# ── Embedded frontend (rebuilt inside Docker) ─────────────────────────────────
+api/cmd/server/frontend_dist
+
+# ── Environment — never bake secrets into the image ──────────────────────────
+.env
+.env.*
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea
+.vscode
+*.swp
+*.swo
+
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Documentation ─────────────────────────────────────────────────────────────
+README.md
+LICENSE
+*.md
+
+# ── Docker files (not needed inside the image) ───────────────────────────────
+docker-compose.yml
+docker-compose.override.yml
+.dockerignore
+
+# ── Scripts (not needed inside the image) ────────────────────────────────────
+deploy.sh
+dev.sh
+
+# ── Claude ───────────────────────────────────────────────────────────────────
+.claude
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log

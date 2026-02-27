@@ -1,0 +1,17 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - "${LISTEN_PORT:-8080}:8080"
+    # All secrets come from .env (copy .env.example → .env and fill in)
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/auth/me"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3

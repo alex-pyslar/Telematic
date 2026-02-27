@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* ─── Tailwind semantic tokens (light mode defaults) ─────────────────────── */
+@theme {
+  --color-background: #fafafa;
+  --color-foreground: #212121;
+  --color-card: #ffffff;
+  --color-card-foreground: #212121;
+  --color-primary: #2196f3;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #212121;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #757575;
+  --color-accent: #e3f2fd;
+  --color-accent-foreground: #1976d2;
+  --color-destructive: #f44336;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e0e0e0;
+  --color-input: #e0e0e0;
+  --color-ring: #2196f3;
+  --radius: 0.625rem;
+}
+
+/* ─── Full design-system variables (light) ────────────────────────────────── */
+:root {
+  /* Фоны */
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-hover: #f5f5f5;
+  --bg-column: #EBF6FF;
+  --bg-modal-overlay: rgba(0, 0, 0, 0.3);
+
+  /* Текст */
+  --text-primary: #000000;
+  --text-heading: #212121;
+  --text-secondary: #757575;
+  --text-muted: #8B8B8B;
+  --text-hint: #979797;
+  --text-disabled: #bdbdbd;
+
+  /* Бордеры */
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+
+  /* Бренд */
+  --brand-blue: #298FEC;
+  --primary: #2196f3;
+  --primary-light: #e3f2fd;
+  --primary-hover: #449DEF;
+  --primary-dark: #1976d2;
+  --primary-accent: #0074EE;
+  --primary-link: #2178C8;
+
+  /* Инпуты */
+  --input-bg: #D4E9FF;
+  --input-empty-bg: #EFEFEF;
+  --input-border: #0074EE;
+  --input-border-light: #A4D0FF;
+  --input-error-bg: #fff8f8;
+
+  /* Поверхности */
+  --surface-elevated: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-heavy: rgba(0, 0, 0, 0.15);
+
+  /* Скроллбар */
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.5);
+
+  /* Кнопки */
+  --btn-primary-bg: #2196f3;
+  --btn-primary-hover: #3B9AFF;
+  --btn-disabled-bg: #ccc;
+
+  /* Карточки */
+  --card-hover-accent: #003881;
+  --card-hover-glow: rgba(0, 56, 129, 0.12);
+
+  /* Логин */
+  --login-gradient-start: #298FEC;
+  --login-gradient-end: #0062CC;
+  --login-card-bg: #ffffff;
+  --login-input-border: #e0e0e0;
+
+  /* Skeleton */
+  --skeleton-base: #f0f0f0;
+  --skeleton-shine: #e0e0e0;
+
+  /* Переходы */
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ─── Dark mode overrides ────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  /* Tailwind semantic overrides */
+  --color-background: #121212;
+  --color-foreground: #e0e0e0;
+  --color-card: #252525;
+  --color-card-foreground: #e0e0e0;
+  --color-primary: #64b5f6;
+  --color-primary-foreground: #121212;
+  --color-secondary: #2c2c2c;
+  --color-secondary-foreground: #e0e0e0;
+  --color-muted: #2c2c2c;
+  --color-muted-foreground: #a0a0a0;
+  --color-accent: #1c1f25;
+  --color-accent-foreground: #64b5f6;
+  --color-destructive: #ef5350;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #333333;
+  --color-input: #2a2a2a;
+  --color-ring: #64b5f6;
+
+  /* Design-system overrides */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-card: #252525;
+  --bg-hover: #2c2c2c;
+  --bg-column: #272a2e;
+  --text-primary: #e0e0e0;
+  --text-heading: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #888888;
+  --text-disabled: #555555;
+  --border-color: #333333;
+  --border-light: #2a2a2a;
+  --brand-blue: #64b5f6;
+  --primary: #64b5f6;
+  --primary-light: #1c1f25;
+  --primary-hover: #90caf9;
+  --primary-dark: #42a5f5;
+  --input-bg: #1c1f25;
+  --input-empty-bg: #2a2a2a;
+  --input-border: #4a90d9;
+  --surface-elevated: #2c2c2c;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-heavy: rgba(0, 0, 0, 0.4);
+  --scrollbar-track: #1e1e1e;
+  --scrollbar-thumb: #444444;
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
+  --btn-primary-bg: #4a90d9;
+  --btn-primary-hover: #64b5f6;
+  --btn-disabled-bg: #444444;
+  --card-hover-accent: #4a80b8;
+  --card-hover-glow: rgba(74, 128, 184, 0.22);
+  --login-gradient-start: #1a5fa8;
+  --login-gradient-end: #0d3a6e;
+  --login-card-bg: #1e1e1e;
+  --login-input-border: #444444;
+  --skeleton-base: #2a2a2a;
+  --skeleton-shine: #333333;
+
+  color-scheme: dark;
+}
+
+/* ─── Theme transition (applied temporarily via JS) ──────────────────────── */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* ─── Base styles ────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+}

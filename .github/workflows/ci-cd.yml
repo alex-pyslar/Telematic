@@ -1,0 +1,64 @@
+name: CI / CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── CI: build & check ──────────────────────────────────────────────────────
+  ci:
+    name: Build & Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Frontend
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web-ui/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: web-ui
+
+      - name: Type-check & build frontend
+        run: npm run build
+        working-directory: web-ui
+
+      # Go backend
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: api/go.mod
+          cache-dependency-path: api/go.sum
+
+      - name: Build backend
+        run: go build ./...
+        working-directory: api
+
+      - name: Vet backend
+        run: go vet ./...
+        working-directory: api
+
+  # ── CD: deploy to server ───────────────────────────────────────────────────
+  deploy:
+    name: Deploy
+    needs: ci
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH & run deploy.sh
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            ./deploy.sh
