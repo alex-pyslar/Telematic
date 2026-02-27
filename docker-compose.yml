@@ -1,5 +1,6 @@
 services:
-  backend:
+  bot-manager:
+    container_name: bot-manager
     build:
       context: .
       dockerfile: api/Dockerfile
