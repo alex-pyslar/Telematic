@@ -25,4 +25,4 @@ EXPOSE 8080
 STOPSIGNAL SIGTERM
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD wget -qO- http://localhost:8080/api/auth/me || exit 1
-CMD ["./bot-manager"]
+CMD ["./botmanager"]
